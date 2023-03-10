@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2023-03-10UTC13:47:510" product-name="wsm_forms_spamshield">
+        <header>
+            <authorName>Andre Kraus</authorName>
+            <authorEmail>info@website-mensch.de</authorEmail>
+        </header>
+        <body>
+            <trans-unit id="form.validator.securitycheck.notvalid">
+                <source>Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.</source>
+                <target>Lo siento, el control de seguridad te identificó como un robot. Para pasar el control de seguridad, debe realizar más acciones en esta página que son típicas para un visitante humano. Y JavaScript debe estar habilitado.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

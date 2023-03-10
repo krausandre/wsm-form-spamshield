@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-06-14UTC21:34:060">
+        <header>
+            <authorName>Andre Kraus</authorName>
+            <authorEmail>info@website-mensch.de</authorEmail>
+        </header>
+        <body>
+            <trans-unit id="form.validator.securitycheck.notvalid">
+                <source>Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
