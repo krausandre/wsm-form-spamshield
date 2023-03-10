@@ -1,0 +1,25 @@
+########################
+#### FORM FRAMEWORK ####
+########################
+
+# Register custom EXT:form configuration
+module.tx_form {
+    settings {
+        yamlConfigurations {
+            1678469420 = EXT:wsm_forms_spamshield/Configuration/Yaml/SecureFormElement.yaml
+        }
+    }
+}
+plugin.tx_form {
+    settings {
+        yamlConfigurations {
+            1678469420 = EXT:wsm_forms_spamshield/Configuration/Yaml/SecureFormElement.yaml
+        }
+    }
+    view {
+        partialRootPaths {
+            1678469420 = EXT:wsm_forms_spamshield/Resources/Private/Partials/Forms/
+            1678469647 = {$plugin.tx_wsmformsspamshield.view.partialRootPath}
+        }
+    }
+}

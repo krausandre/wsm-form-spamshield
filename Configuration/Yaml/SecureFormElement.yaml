@@ -1,0 +1,80 @@
+TYPO3:
+    CMS:
+        Form:
+            prototypes:
+                standard:
+                    formEditor:
+                        formEditorPartials:
+                            FormElement-SecureCheck: 'Stage/SimpleTemplate'
+                        dynamicRequireJsModules:
+                            additionalViewModelModules:
+                                1588750201: 'TYPO3/CMS/Sitepackage/Backend/FormEditor/SecureCheckViewModel'
+                    formElementsDefinition:
+                        SecureCheck:
+                            formEditor:
+                                label: 'Simple Spam Protection'
+                                group: custom
+                                groupSorting: 1000
+                                iconIdentifier: 'icon-form-checkbox'
+                                editors:
+                                    100:
+                                        identifier: header
+                                        templateName: Inspector-FormElementHeaderEditor
+                                    200:
+                                        identifier: label
+                                        templateName: Inspector-TextEditor
+                                        label: formEditor.elements.FormElement.editor.label.label
+                                        propertyPath: label
+                                    900:
+                                        identifier: validators
+                                        templateName: Inspector-ValidatorsEditor
+                                        label: formEditor.elements.TextMixin.editor.validators.label
+                                        selectOptions:
+                                            10:
+                                                value: ''
+                                                label: formEditor.elements.TextMixin.editor.validators.EmptyValue.label
+                                            40:
+                                                value: SpamSecurityCheck
+                                                label: 'Simple Spam Protection Validation'
+                                propertyCollections:
+                                    validators:
+                                        40:
+                                            identifier: SpamSecurityCheck
+                                            editors:
+                                                100:
+                                                    identifier: header
+                                                    templateName: Inspector-CollectionElementHeaderEditor
+                                                    label: 'Simple Spam Protection Validation'
+                                                200:
+                                                    identifier: securityLevel
+                                                    templateName: Inspector-TextEditor
+                                                    label: 'Security Level (1-10):'
+                                                    fieldExplanationText: '(Default: 6) Mit dem Security Level können Sie festlegen, wie viel % in 10er Schritten der Tests bestanden werden müssen. Bedenken Sie, das bei Level 10 ggf. das Formular nicht mehr abgeschickt werden kann.'
+                                                    propertyPath: options.securityLevel
+                                                    propertyValidators:
+                                                        10: Integer
+                                                300:
+                                                    identifier: validationErrorMessage
+                                                    templateName: Inspector-ValidationErrorMessageEditor
+                                                    label: formEditor.elements.TextMixin.validators.EmailAddress.editor.validationErrorMessage.label
+                                                    fieldExplanationText: formEditor.elements.TextMixin.validators.EmailAddress.editor.validationErrorMessage.fieldExplanationText
+                                                    errorCodes:
+                                                        10: 1221559976
+                                                    propertyPath: properties.validationErrorMessages
+                                                9999:
+                                                    identifier: removeButton
+                                                    templateName: Inspector-RemoveElementEditor
+                            implementationClassName: 'WebsiteMensch\FormsSpamshield\Domain\Model\FormElements\SecureCheckElement'
+                            properties:
+                                elementClassAttribute: 'security-check-input'
+                            validators:
+                                -
+                                    identifier: SpamSecurityCheck
+
+                    validatorsDefinition:
+                        SpamSecurityCheck:
+                            implementationClassName: 'WebsiteMensch\FormsSpamshield\FormValidator\SecureCheckValidator'
+                            formEditor:
+                                iconIdentifier: form-validator
+                                label: 'Spam Security Einstellungen'
+
