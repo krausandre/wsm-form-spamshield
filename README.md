@@ -11,19 +11,49 @@ the current user is a human. Simple things like browser width, does the user pre
 No personal data. But JavaScript must be enabled, elsewhere the spamshild will detect the user as a bot.
 
 The second component is a validator, which checks the result of the JavaScript.
-You can configure a security level from 1 to 10, which the validator respects.
+You can configure a security level from 1 to 10 in your form field definition, which the validator respects.
 1 means, 10% of the security checks have to be successful, 10 means 100% have to be successful.
 
 Please remember accessibility, that there are some people e.g. which can not use a mouse. So set the security level to 10 might be not accessible for some people.
 
 ## How to install
 
-composer
+You can install this extension via composer:
 
-TER
+```
+composer req wsm/forms-spamshield
 
-add typoscript
+```
+
+You can also install this extension via TER.
+
+After installation, add the static TypoScript template, for example in your sitepackage setup.typoscript like this:
+
+```
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wsm_forms_spamshield/Configuration/TypoScript/setup.typoscript">
+
+```
+
+
 
 ## How to use
 
-add field with validator to your formdefinition
+Add the security check field with validator to your formdefinition like this:
+
+```
+    -
+    type: SecureCheck
+    identifier: securitycheck
+    label: 'Security check against robots'
+    validators:
+        -
+            identifier: SpamSecurityCheck
+            options:
+                securityLevel: 5
+    properties:
+        validationErrorMessages:
+            -
+                code: 1678470449
+                message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
+
+```
