@@ -8,14 +8,14 @@ TYPO3:
                             FormElement-SecureCheck: 'Stage/SimpleTemplate'
                         dynamicRequireJsModules:
                             additionalViewModelModules:
-                                1588750201: 'TYPO3/CMS/Sitepackage/Backend/FormEditor/SecureCheckViewModel'
+                                1588750201: 'TYPO3/CMS/WsmFormsSpamshield/Backend/FormEditor/SecureCheckViewModel'
                     formElementsDefinition:
                         SecureCheck:
                             formEditor:
                                 label: 'Simple Spam Protection'
                                 group: custom
                                 groupSorting: 1000
-                                iconIdentifier: 'icon-form-checkbox'
+                                iconIdentifier: 'actions-shield-typo3'
                                 editors:
                                     100:
                                         identifier: header
@@ -49,7 +49,7 @@ TYPO3:
                                                     identifier: securityLevel
                                                     templateName: Inspector-TextEditor
                                                     label: 'Security Level (1-10):'
-                                                    fieldExplanationText: '(Default: 6) Mit dem Security Level können Sie festlegen, wie viel % in 10er Schritten der Tests bestanden werden müssen. Bedenken Sie, das bei Level 10 ggf. das Formular nicht mehr abgeschickt werden kann.'
+                                                    fieldExplanationText: '(Default: 6) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
                                                     propertyPath: options.securityLevel
                                                     propertyValidators:
                                                         10: Integer
@@ -76,5 +76,5 @@ TYPO3:
                             implementationClassName: 'WebsiteMensch\FormsSpamshield\FormValidator\SecureCheckValidator'
                             formEditor:
                                 iconIdentifier: form-validator
-                                label: 'Spam Security Einstellungen'
+                                label: 'Spam Security Settings'
 
