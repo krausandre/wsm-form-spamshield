@@ -4,7 +4,7 @@ Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant 
 
 ## How it works
 
-This shield works with two components: 
+This shield works with two components:
 
 The first component is a JavaScript, which checks the browser and checks if there are signs that
 the current user is a human. Simple things like browser width, does the user pressed a key, does the user moved the mouse and so on.
@@ -42,18 +42,18 @@ Add the security check field with validator to your formdefinition like this:
 
 ```
     -
-    type: SecureCheck
-    identifier: securitycheck
-    label: 'Security check against robots'
-    validators:
-        -
-            identifier: SpamSecurityCheck
-            options:
-                securityLevel: 5
-    properties:
-        validationErrorMessages:
+        type: SecureCheck
+        identifier: securitycheck
+        label: 'Security check against robots'
+        validators:
             -
-                code: 1678470449
-                message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
+                identifier: SpamSecurityCheck
+                options:
+                    securityLevel: 5
+        properties:
+            validationErrorMessages:
+                -
+                    code: 1678470449
+                    message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
 
 ```
