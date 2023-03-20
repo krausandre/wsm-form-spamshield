@@ -10,6 +10,13 @@ TYPO3:
                             additionalViewModelModules:
                                 1588750201: 'TYPO3/CMS/WsmFormsSpamshield/Backend/FormEditor/SecureCheckViewModel'
                     formElementsDefinition:
+                        Form:
+                            renderingOptions:
+                                translation:
+                                    translationFiles:
+                                        1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Language/locallang.xlf'
+                                partialRootPaths:
+                                    1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms'
                         SecureCheck:
                             formEditor:
                                 label: 'Simple Spam Protection'
@@ -70,6 +77,12 @@ TYPO3:
                             validators:
                                 -
                                     identifier: SpamSecurityCheck
+                            renderingOptions:
+                                translation:
+                                    translationFiles:
+                                        1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Language/locallang.xlf'
+                                partialRootPaths:
+                                    1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms'
 
                     validatorsDefinition:
                         SpamSecurityCheck:
