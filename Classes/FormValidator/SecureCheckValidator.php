@@ -1,6 +1,6 @@
 <?php
 
-namespace WebsiteMensch\FormsSpamshield\FormValidator;
+namespace WebsiteMensch\FormSpamshield\FormValidator;
 
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Extension Manager/Repository config file for ext "wsm_forms_spamshield".
+ * Extension Manager/Repository config file for ext "wsm_form_spamshield".
  */
-$EM_CONF['wsm_forms_spamshield'] = [
-    'title' => 'Forms Spamshield',
+$EM_CONF['wsm_form_spamshield'] = [
+    'title' => 'Form Spamshield',
     'description' => 'Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant without a captcha.',
     'category' => 'services',
     'constraints' => [
@@ -17,7 +17,7 @@ $EM_CONF['wsm_forms_spamshield'] = [
     ],
     'autoload' => [
         'psr-4' => [
-            'WebsiteMensch\\FormsSpamshield\\' => 'Classes'
+            'WebsiteMensch\\FormSpamshield\\' => 'Classes'
         ],
     ],
     'state' => 'stable',

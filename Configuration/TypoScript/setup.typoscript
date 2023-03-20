@@ -6,24 +6,24 @@
 module.tx_form {
     settings {
         yamlConfigurations {
-            1678469420 = EXT:wsm_forms_spamshield/Configuration/Yaml/SecureFormElement.yaml
+            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/SecureFormElement.yaml
         }
     }
     view {
         partialRootPaths {
-            1678469420 = EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms/
+            1678469420 = EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms/
         }
     }
 }
 plugin.tx_form {
     settings {
         yamlConfigurations {
-            1678469420 = EXT:wsm_forms_spamshield/Configuration/Yaml/SecureFormElement.yaml
+            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/SecureFormElement.yaml
         }
     }
     view {
         partialRootPaths {
-            1678469420 = EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms/
+            1678469420 = EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms/
         }
     }
 }

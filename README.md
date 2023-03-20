@@ -1,4 +1,4 @@
-# Forms Spamshield
+# Form Spamshield
 
 Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant without a captcha.
 
@@ -21,7 +21,7 @@ Please remember accessibility, that there are some people e.g. which can not use
 You can install this extension via composer:
 
 ```
-composer req wsm/forms-spamshield
+composer req wsm/form-spamshield
 
 ```
 
@@ -30,7 +30,7 @@ You can also install this extension via TER.
 After installation, add the static TypoScript template, for example in your sitepackage setup.typoscript like this:
 
 ```
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wsm_forms_spamshield/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wsm_form_spamshield/Configuration/TypoScript/setup.typoscript">
 
 ```
 

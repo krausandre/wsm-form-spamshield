@@ -1,6 +1,6 @@
 <?php
 
-namespace WebsiteMensch\FormsSpamshield\Domain\Model\FormElements;
+namespace WebsiteMensch\FormSpamshield\Domain\Model\FormElements;
 
 use TYPO3\CMS\Form\Domain\Model\FormElements\AbstractFormElement;
 

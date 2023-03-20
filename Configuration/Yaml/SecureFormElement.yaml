@@ -8,15 +8,15 @@ TYPO3:
                             FormElement-SecureCheck: 'Stage/SimpleTemplate'
                         dynamicRequireJsModules:
                             additionalViewModelModules:
-                                1588750201: 'TYPO3/CMS/WsmFormsSpamshield/Backend/FormEditor/SecureCheckViewModel'
+                                1588750201: 'TYPO3/CMS/WsmFormSpamshield/Backend/FormEditor/SecureCheckViewModel'
                     formElementsDefinition:
                         Form:
                             renderingOptions:
                                 translation:
                                     translationFiles:
-                                        1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Language/locallang.xlf'
+                                        1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf'
                                 partialRootPaths:
-                                    1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms'
+                                    1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms'
                         SecureCheck:
                             formEditor:
                                 label: 'Simple Spam Protection'
@@ -71,7 +71,7 @@ TYPO3:
                                                 9999:
                                                     identifier: removeButton
                                                     templateName: Inspector-RemoveElementEditor
-                            implementationClassName: 'WebsiteMensch\FormsSpamshield\Domain\Model\FormElements\SecureCheckElement'
+                            implementationClassName: 'WebsiteMensch\FormSpamshield\Domain\Model\FormElements\SecureCheckElement'
                             properties:
                                 elementClassAttribute: 'security-check-input'
                             validators:
@@ -80,13 +80,13 @@ TYPO3:
                             renderingOptions:
                                 translation:
                                     translationFiles:
-                                        1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Language/locallang.xlf'
+                                        1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf'
                                 partialRootPaths:
-                                    1588750201: 'EXT:wsm_forms_spamshield/Resources/Private/Frontend/Partials/Forms'
+                                    1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms'
 
                     validatorsDefinition:
                         SpamSecurityCheck:
-                            implementationClassName: 'WebsiteMensch\FormsSpamshield\FormValidator\SecureCheckValidator'
+                            implementationClassName: 'WebsiteMensch\FormSpamshield\FormValidator\SecureCheckValidator'
                             formEditor:
                                 iconIdentifier: form-validator
                                 label: 'Spam Security Settings'

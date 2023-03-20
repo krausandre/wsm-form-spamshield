@@ -1,5 +1,5 @@
 {
-	"name": "wsm/forms-spamshield",
+	"name": "wsm/form-spamshield",
 	"type": "typo3-cms-extension",
 	"description": "Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant without a captcha.",
     "version": "1.0.0",
@@ -16,9 +16,9 @@
 	],
 	"homepage": "https://www.website-mensch.de/",
 	"support": {
-		"issues": "https://github.com/krausandre/wsm-forms-spamshield/issues",
-		"docs": "https://docs.typo3.org/typo3cms/extensions/wsm_forms_spamshield/",
-		"source": "https://github.com/krausandre/wsm-forms-spamshield/"
+		"issues": "https://github.com/krausandre/wsm-form-spamshield/issues",
+		"docs": "https://docs.typo3.org/typo3cms/extensions/wsm_form_spamshield/",
+		"source": "https://github.com/krausandre/wsm-form-spamshield/"
 	},
 	"authors": [
 		{
@@ -36,11 +36,11 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"WebsiteMensch\\FormsSpamshield\\": "Classes/"
+			"WebsiteMensch\\FormSpamshield\\": "Classes/"
 		}
 	},
 	"replace": {
-		"typo3-ter/wsm_forms_spamshield": "self.version"
+		"typo3-ter/wsm_form_spamshield": "self.version"
 	},
 	"repositories": [
 		{
@@ -50,7 +50,7 @@
 	],
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "wsm_forms_spamshield"
+			"extension-key": "wsm_form_spamshield"
 		}
 	}
 }
