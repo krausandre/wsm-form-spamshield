@@ -2,7 +2,7 @@
 	"name": "wsm/form-spamshield",
 	"type": "typo3-cms-extension",
 	"description": "Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant without a captcha.",
-    "version": "1.0.0",
+    "version": "1.1.0",
 	"keywords": [
 		"TYPO3 CMS",
 		"forms",

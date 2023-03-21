@@ -20,12 +20,12 @@ $EM_CONF['wsm_form_spamshield'] = [
             'WebsiteMensch\\FormSpamshield\\' => 'Classes'
         ],
     ],
-    'state' => 'stable',
+    'state' => 'beta',
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
     'author' => 'Andre Kraus',
     'author_email' => 'info@website-mensch.de',
     'author_company' => 'Website Mensch',
-    'version' => '1.0.0',
+    'version' => '1.1.0',
 ];
