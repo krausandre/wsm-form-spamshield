@@ -17,7 +17,7 @@
 	"homepage": "https://www.website-mensch.de/",
 	"support": {
 		"issues": "https://github.com/krausandre/wsm-form-spamshield/issues",
-		"docs": "https://docs.typo3.org/typo3cms/extensions/wsm_form_spamshield/",
+		"docs": "https://github.com/krausandre/wsm-form-spamshield/",
 		"source": "https://github.com/krausandre/wsm-form-spamshield/"
 	},
 	"authors": [
