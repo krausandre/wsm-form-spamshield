@@ -1,8 +1,11 @@
-# Form Spamshield
+=================
+Form Spamshield
+=================
 
 Adds a bot detection via JavaScript and a Validator to EXT:form, GDPR compliant without a captcha.
 
-## How it works
+How it works
+============
 
 This shield works with two components:
 
@@ -16,24 +19,25 @@ You can configure a security level from 1 to 10 in your form field definition, w
 
 Please remember accessibility, that there are some people e.g. which can not use a mouse. So set the security level to 10 might be not accessible for some people.
 
-## How to install
+How to install
+==============
 
 You can install this extension via composer:
 
-```
-composer req wsm/form-spamshield
+.. code-block:: bash
+   composer req wsm/form-spamshield
 
-```
 
 You can also install this extension via TER.
 
 After installation flush TYPO3 and PHP caches.
 
-## How to use
+How to use
+==========
 
 Add the security check field with validator to your formdefinition like this:
 
-```
+.. code-block:: yaml
     -
         type: SecureCheck
         identifier: securitycheck
@@ -48,5 +52,3 @@ Add the security check field with validator to your formdefinition like this:
                 -
                     code: 1678470449
                     message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
-
-```
