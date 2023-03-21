@@ -25,6 +25,7 @@ How to install
 You can install this extension via composer:
 
 .. code-block:: bash
+
    composer req wsm/form-spamshield
 
 
