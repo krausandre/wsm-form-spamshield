@@ -39,6 +39,7 @@ How to use
 Add the security check field with validator to your formdefinition like this:
 
 .. code-block:: yaml
+
     -
         type: SecureCheck
         identifier: securitycheck
