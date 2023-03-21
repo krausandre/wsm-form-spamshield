@@ -9,9 +9,9 @@ define([
         /**
          * @private
          *
-         * @var object
+         * @let object
          */
-        var _formEditorApp = null;
+        let _formEditorApp = null;
 
         /**
          * @private

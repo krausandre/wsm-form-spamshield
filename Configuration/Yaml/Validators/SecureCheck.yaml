@@ -1,0 +1,11 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          validatorsDefinition:
+            SpamSecurityCheck:
+              implementationClassName: 'WebsiteMensch\FormSpamshield\Mvc\Validation\SecureCheckValidator'
+              formEditor:
+                iconIdentifier: form-validator
+                label: 'Spam Security Settings'

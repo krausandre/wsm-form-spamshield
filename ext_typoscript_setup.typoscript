@@ -6,7 +6,7 @@
 module.tx_form {
     settings {
         yamlConfigurations {
-            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/SecureFormElement.yaml
+            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/EditorBaseSetup.yaml
         }
     }
     view {
@@ -18,7 +18,7 @@ module.tx_form {
 plugin.tx_form {
     settings {
         yamlConfigurations {
-            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/SecureFormElement.yaml
+            1678469420 = EXT:wsm_form_spamshield/Configuration/Yaml/BaseSetup.yaml
         }
     }
     view {
