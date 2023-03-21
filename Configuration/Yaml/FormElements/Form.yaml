@@ -1,0 +1,13 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                translation:
+                  translationFiles:
+                    1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf'
+                partialRootPaths:
+                  1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms'

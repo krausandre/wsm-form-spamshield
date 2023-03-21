@@ -1,0 +1,17 @@
+imports:
+  - { resource: "./Validators/SecureCheck.yaml" }
+
+  - { resource: "./FormElements/Form.yaml" }
+  - { resource: "./FormElements/SecureCheck.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            formEditorPartials:
+              FormElement-SecureCheck: 'Stage/SimpleTemplate'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1588750201: 'TYPO3/CMS/WsmFormSpamshield/Backend/FormEditor/SecureCheckViewModel'

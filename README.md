@@ -27,14 +27,7 @@ composer req wsm/form-spamshield
 
 You can also install this extension via TER.
 
-After installation, add the static TypoScript template, for example in your sitepackage setup.typoscript like this:
-
-```
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wsm_form_spamshield/Configuration/TypoScript/setup.typoscript">
-
-```
-
-
+After installation flush TYPO3 and PHP caches.
 
 ## How to use
 

@@ -1,9 +1,9 @@
-var securityTests = {};
-var form = document.querySelector('form');
+let securityTests = {};
+let form = document.querySelector('form');
 
 /* Count seconds, stop at 90 seconds */
-var seconds = 0;
-var secondsIntervall = setInterval(incrementSeconds, 1000);
+let seconds = 0;
+let secondsIntervall = setInterval(incrementSeconds, 1000);
 function incrementSeconds() {
     seconds += 1;
     securityTests['seconds'] = seconds;
@@ -17,14 +17,14 @@ function incrementSeconds() {
     }
 }
 
-var securityFieldList = Array.from(document.querySelectorAll('form input.security-check-input'));
+let securityFieldList = Array.from(document.querySelectorAll('form input.security-check-input'));
 
 /** set default values after 2 seconds. */
 function setDefaultValues() {
     /* get some default values */
     securityTests['displayWidth'] = screen.width;
-    securityTests['displayHight'] = screen.height;
-    securityTests['formRenderedHight'] = form.offsetHeight;
+    securityTests['displayHeight'] = screen.height;
+    securityTests['formRenderedHeight'] = form.offsetHeight;
     securityTests['formRenderedWidth'] = form.offsetWidth;
 }
 
