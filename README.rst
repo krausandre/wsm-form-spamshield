@@ -50,7 +50,17 @@ Add the security check field with validator to your formdefinition like this:
                 options:
                     securityLevel: 5
         properties:
+            secureCheckSuccessMessage: 'Validation passed'
             validationErrorMessages:
                 -
-                    code: 1678470449
+                    code: 1221559976
                     message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
+
+
+The 'secureCheckSuccessMessage' will be set by the SpamshieldFinisher, so you have to add this finisher maybe in first place to your form definition:
+
+.. code-block:: yaml
+
+   finishers:
+      -
+         identifier: Spamshield

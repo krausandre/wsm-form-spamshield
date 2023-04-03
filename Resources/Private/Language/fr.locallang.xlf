@@ -11,6 +11,11 @@
                 <target>Désolé, le contrôle de sécurité vous a identifié comme un robot. Pour passer le contrôle de sécurité, vous devez effectuer plus d'actions sur cette page qui sont typiques pour un visiteur humain. Et JavaScript doit être activé.</target>
             </trans-unit>
 
+            <trans-unit id="spamshield.finisher.message">
+                <source>Security check successfully passed.</source>
+                <target>Contrôle de sécurité réussi.</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

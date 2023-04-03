@@ -1,0 +1,28 @@
+TYPO3:
+    CMS:
+        Form:
+            prototypes:
+                standard:
+                    finishersDefinition:
+                        Spamshield:
+                            implementationClassName: 'WebsiteMensch\FormSpamshield\Domain\Model\Finishers\SpamshieldFinisher'
+                        formEditor:
+                            iconIdentifier: form-finisher
+                            label: 'Spamshield Finisher'
+                            predefinedDefaults:
+                                options: {  }
+
+                        propertyCollections:
+                            finishers:
+                                95:
+                                    identifier: Spamshield
+                                    editors:
+                                        100:
+                                            identifier: header
+                                            templateName: Inspector-CollectionElementHeaderEditor
+                                            label: 'Spamshield Finisher'
+                                        9999:
+                                            identifier: removeButton
+                                            templateName: Inspector-RemoveElementEditor
+
+
