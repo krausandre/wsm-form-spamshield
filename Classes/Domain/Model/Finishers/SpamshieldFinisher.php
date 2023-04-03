@@ -12,6 +12,7 @@ declare(strict_types=1);
  *  (c) 2023 André Kraus <andre.kraus@website-mensch.de>, Website Mensch
  *
  ***/
+
 namespace WebsiteMensch\FormSpamshield\Domain\Model\Finishers;
 
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -21,7 +22,6 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 class SpamshieldFinisher extends AbstractFinisher
 {
-
     /**
      * Executes this finisher
      * @see AbstractFinisher::execute()
@@ -35,9 +35,9 @@ class SpamshieldFinisher extends AbstractFinisher
         foreach ($formValues as $key => $value) {
             $fieldConfig = $formRuntime->getFormDefinition()->getElementByIdentifier($key);
 
-            if ( $fieldConfig !== null && $fieldConfig->getType() === 'SecureCheck' && strlen('' . $value) > 5 ) {
+            if ($fieldConfig !== null && $fieldConfig->getType() === 'SecureCheck' && strlen('' . $value) > 5) {
                 $humanreadableValue = '';
-                if ( isset($fieldConfig->getProperties()['secureCheckSuccessMessage']) && strlen('' . $fieldConfig->getProperties()['secureCheckSuccessMessage']) > 0 ) {
+                if (isset($fieldConfig->getProperties()['secureCheckSuccessMessage']) && strlen('' . $fieldConfig->getProperties()['secureCheckSuccessMessage']) > 0) {
                     $humanreadableValue = $fieldConfig->getProperties()['secureCheckSuccessMessage'];
                 } else {
                     /** @var LanguageService  */
