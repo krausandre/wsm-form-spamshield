@@ -27,3 +27,6 @@ TYPO3:
                           identifier: header
                           templateName: Inspector-CollectionElementHeaderEditor
                           label: 'Spamshield Finisher'
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
