@@ -9,7 +9,7 @@ TYPO3:
                 label: 'Simple Spam Protection'
                 group: custom
                 groupSorting: 1000
-                iconIdentifier: 'actions-shield-typo3'
+                iconIdentifier: 'wsm-form-spamshield'
                 editors:
                   100:
                     identifier: header
