@@ -19,6 +19,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
+use TYPO3\CMS\Form\Domain\Runtime\FormState;
 
 class SpamshieldFinisher extends AbstractFinisher
 {
@@ -44,8 +45,11 @@ class SpamshieldFinisher extends AbstractFinisher
                     $languageService = GeneralUtility::makeInstance(LanguageService::class);
                     $humanreadableValue = $languageService->sL('LLL:EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf:spamshield.finisher.message');
                 }
-                $formRuntime->getFormState()->setFormValue($key, $humanreadableValue);
+                if ($formRuntime->getFormState() instanceof FormState) {
+                    $formRuntime->getFormState()->setFormValue($key, $humanreadableValue);
+                }
             }
         }
+        return '';
     }
 }

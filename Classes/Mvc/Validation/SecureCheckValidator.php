@@ -20,14 +20,18 @@ class SecureCheckValidator extends AbstractValidator
 
     /**
      * Supported options
-     * @var array
+     * @var array<string, Array<string>> $supportedOptions
      */
     protected $supportedOptions = [
         'securityLevel' => ['', 'Security Level', 'string']
     ];
 
-    protected function isValid($value)
+    protected function isValid($value): bool
     {
+        if (!is_string($value)) {
+            return false;
+        }
+
         $securityChecks = json_decode($value, true);
 
         // TODO check why validator is executed twice
@@ -75,6 +79,7 @@ class SecureCheckValidator extends AbstractValidator
     /**
      * Checks if a minimum set of needed infos is given.
      * If not, the sender must be a spam bot.
+     * @param array<string, string> $checks
      */
     protected function checkMinimumInfos(array $checks): bool
     {
@@ -94,6 +99,7 @@ class SecureCheckValidator extends AbstractValidator
 
     /**
      * Check which of the additional infos are given.
+     * @param array<string, string> $checks
      */
     protected function checkAdditionalInfos(array $checks): bool
     {
@@ -204,13 +210,13 @@ class SecureCheckValidator extends AbstractValidator
     /**
      * Print error message.
      */
-    protected function displayError()
+    protected function displayError(): void
     {
         $this->addError(
             $this->translateErrorMessage(
                 'form.validator.securitycheck.notvalid',
                 'wsmFormSpamshield'
-            ) ?? '',
+            ),
             1623240740
         );
     }
