@@ -3,13 +3,3 @@ imports:
 
   - { resource: "./FormElements/Form.yaml" }
   - { resource: "./FormElements/SecureCheck.yaml" }
-  - { resource: "./Finishers/Spamshield.yaml" }
-
-TYPO3:
-  CMS:
-    Form:
-      prototypes:
-        standard:
-          finishersDefinition:
-            Spamshield:
-              implementationClassName: 'WebsiteMensch\FormSpamshield\Domain\Model\Finishers\SpamshieldFinisher'

@@ -3,7 +3,6 @@ imports:
 
   - { resource: "./FormElements/Form.yaml" }
   - { resource: "./FormElements/SecureCheck.yaml" }
-  - { resource: "./Finishers/Spamshield.yaml" }
 
 TYPO3:
   CMS:
