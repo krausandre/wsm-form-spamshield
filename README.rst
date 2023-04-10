@@ -55,13 +55,3 @@ Add the security check field with validator to your formdefinition like this:
                 -
                     code: 1221559976
                     message: 'Sorry, the security check identified you as a robot. To pass the security check, you must perform more actions on this page that are typical for a human visitor. And JavaScript must be enabled.'
-
-
-The 'secureCheckSuccessMessage' will be processed by the SpamshieldFinisher, you have to add this finisher in
-first place to your form definition to overwrite the secerity check logs from the frontend:
-
-.. code-block:: yaml
-
-   finishers:
-      -
-         identifier: Spamshield
