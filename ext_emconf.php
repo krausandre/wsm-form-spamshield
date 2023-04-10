@@ -9,8 +9,8 @@ $EM_CONF['wsm_form_spamshield'] = [
     'category' => 'services',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.5.99',
-            'form' => '10.4.0-11.5.99',
+            'typo3' => '10.4.0-12.4.99',
+            'form' => '10.4.0-12.4.99',
         ],
         'conflicts' => [
         ],

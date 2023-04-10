@@ -1,8 +1,21 @@
 <?php
 
+/***
+ *
+ * This file is part of the "wsm_form_spamshield" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ *  (c) 2023 André Kraus <andre.kraus@website-mensch.de>, Website Mensch
+ *
+ ***/
+
+
 namespace WebsiteMensch\FormSpamshield\Mvc\Validation;
 
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
+use WebsiteMensch\FormSpamshield\Provider\ValidationResultProvider;
 
 class SecureCheckValidator extends AbstractValidator
 {
@@ -26,18 +39,17 @@ class SecureCheckValidator extends AbstractValidator
         'securityLevel' => ['', 'Security Level', 'string']
     ];
 
-    protected function isValid($value): bool
+    protected function isValid($value): void
     {
         if (!is_string($value)) {
-            return false;
+            $this->displayError();
+            return;
         }
 
-        $securityChecks = json_decode($value, true);
-
+        // $securityChecks = json_decode($value, true);
+        $securityChecks = json_decode(ValidationResultProvider::getValidationResult(), true);
+        
         // TODO check why validator is executed twice
-        if (empty($this->options['securityLevel'])) {
-            return false;
-        }
 
         /**
          * Security Level default 6
@@ -50,13 +62,14 @@ class SecureCheckValidator extends AbstractValidator
 
         if (!$value || !is_array($securityChecks) || !is_string($value)) {
             $this->displayError();
-            return false;
+            return;
         }
 
         // Start working
         // Check if a basic set of informations is given for identify a human
         if (!$this->checkMinimumInfos($securityChecks)) {
-            return false;
+            $this->displayError();
+            return;
         }
         // Check additional infos
         $this->checkAdditionalInfos($securityChecks);
@@ -69,11 +82,9 @@ class SecureCheckValidator extends AbstractValidator
         );
 
         // finally check if security level is given:
-        if ($securityCalculation >= $securityLevel) {
-            return true;
+        if ($securityCalculation < $securityLevel) {
+            $this->displayError();
         }
-
-        return false;
     }
 
     /**
