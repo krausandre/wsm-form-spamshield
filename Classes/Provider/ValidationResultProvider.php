@@ -15,7 +15,7 @@ namespace WebsiteMensch\FormSpamshield\Provider;
 
 class ValidationResultProvider
 {
-    public static function rememberValidation(string $value): void
+    public static function rememberValidation(mixed $value): void
     {
         $_SESSION['wsm_form_spamshield'][1680905109]['securityCheckResult'] = $value;
     }
