@@ -100,7 +100,6 @@ class SecureCheckValidator extends AbstractValidator
         foreach ($minimValues as $neededCheck) {
             $this->testCounter++;
             if (!array_key_exists($neededCheck, $checks)) {
-                $this->displayError();
                 return false;
             }
             $this->countValidTests++;
