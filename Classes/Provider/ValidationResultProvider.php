@@ -27,4 +27,17 @@ class ValidationResultProvider
         }
         return $_SESSION['wsm_form_spamshield'][1680905109]['securityCheckResult'];
     }
+
+    public static function rememberErrorMessages(array $value): void
+    {
+        $_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'] = $value;
+    }
+
+    public static function getErrorMessages(): array
+    {
+        if (!isset($_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'])) {
+            return [''];
+        }
+        return $_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'];
+    }
 }

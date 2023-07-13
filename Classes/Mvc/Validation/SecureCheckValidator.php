@@ -241,6 +241,14 @@ class SecureCheckValidator extends AbstractValidator
             return;
         }
 
+        $customErrorMessages = ValidationResultProvider::getErrorMessages();
+        if (!empty($customErrorMessages) && array_key_exists('message', $customErrorMessages[0])) {
+            $this->addError(
+                $customErrorMessages[0]['message'],
+                1689279306
+            );
+            return;
+        }
         $this->addError(
             $this->translateErrorMessage(
                 'form.validator.securitycheck.notvalid',
