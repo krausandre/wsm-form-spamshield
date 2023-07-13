@@ -14,6 +14,6 @@ call_user_func(static function () {
         SvgIconProvider::class,
         ['source' => 'EXT:wsm_form_spamshield/Resources/Public/Icons/Extension.svg']
     );
-    
+
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit'][1680904711] = AfterSubmitHook::class;
 });

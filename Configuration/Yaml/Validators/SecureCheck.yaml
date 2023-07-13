@@ -9,3 +9,7 @@ TYPO3:
               formEditor:
                 iconIdentifier: form-validator
                 label: 'Spam Security Settings'
+                predefinedDefaults:
+                  options:
+                    securityLevel: 6
+                    formTimeout: 5

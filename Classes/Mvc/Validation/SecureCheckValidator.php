@@ -11,7 +11,6 @@
  *
  ***/
 
-
 namespace WebsiteMensch\FormSpamshield\Mvc\Validation;
 
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
@@ -36,7 +35,8 @@ class SecureCheckValidator extends AbstractValidator
      * @var array<string, Array<string>> $supportedOptions
      */
     protected $supportedOptions = [
-        'securityLevel' => ['', 'Security Level', 'string']
+        'securityLevel' => ['', 'Security Level', 'string'],
+        'formTimeout' => [5, 'Form timeout, minimum amount of seconds before form can be send', 'int'],
     ];
 
     protected function isValid($value): void
@@ -48,7 +48,7 @@ class SecureCheckValidator extends AbstractValidator
 
         // $securityChecks = json_decode($value, true);
         $securityChecks = json_decode(ValidationResultProvider::getValidationResult(), true);
-        
+
         // TODO check why validator is executed twice
 
         /**
@@ -71,10 +71,25 @@ class SecureCheckValidator extends AbstractValidator
             $this->displayError();
             return;
         }
+
+        // Check if form is send to fast
+        $formTimeout = ((array_key_exists('formTimeout', $this->options)) ? intval($this->options['formTimeout']) : 5);
+        if ($securityChecks['seconds'] < $formTimeout) {
+            $this->displayError();
+            return;
+        } else {
+            $this->countValidTests++;
+            $this->testCounter++;
+        }
+
         // Check additional infos
         $this->checkAdditionalInfos($securityChecks);
         // Check mobile device
         $this->isMobile();
+        // Check if all values are valid
+        foreach ($securityChecks as $key => $check) {
+            $this->validateCheck($key, $check);
+        }
 
         // calculate security level: percentage of valid tests, * 100 and parsed to int to compare with security level.
         $securityCalculation = intval(
@@ -222,6 +237,10 @@ class SecureCheckValidator extends AbstractValidator
      */
     protected function displayError(): void
     {
+        if ($this->result->hasErrors()) {
+            return;
+        }
+
         $this->addError(
             $this->translateErrorMessage(
                 'form.validator.securitycheck.notvalid',

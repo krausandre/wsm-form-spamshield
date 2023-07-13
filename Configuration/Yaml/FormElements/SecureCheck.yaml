@@ -44,6 +44,13 @@ TYPO3:
                       40:
                         value: SpamSecurityCheck
                         label: 'Simple Spam Protection Validation'
+                predefinedDefaults:
+                  validators:
+                    -
+                      identifier: SpamSecurityCheck
+                      options:
+                        securityLevel: 6
+                        formTimeout: 5
                 propertyCollections:
                   validators:
                     40:
@@ -59,6 +66,14 @@ TYPO3:
                           label: 'Security Level (1-10):'
                           fieldExplanationText: '(Default: 6) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
                           propertyPath: options.securityLevel
+                          propertyValidators:
+                            10: Integer
+                        300:
+                          identifier: formTimeout
+                          templateName: Inspector-TextEditor
+                          label: 'Form timeout:'
+                          fieldExplanationText: '(Default: 5) minimum amount of seconds before the form can be send.'
+                          propertyPath: options.formTimeout
                           propertyValidators:
                             10: Integer
                         9999:
