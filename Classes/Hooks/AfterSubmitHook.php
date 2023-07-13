@@ -38,7 +38,8 @@ class AfterSubmitHook
         if ($renderable->getType() === 'SecureCheck') {
             // remember the value for the validator
             ValidationResultProvider::rememberValidation('' . $elementValue);
-            ValidationResultProvider::rememberErrorMessages($renderable->getProperties()['validationErrorMessages']);
+            $errorMessages = (($renderable->getProperties()['validationErrorMessages'] !== null && is_array($renderable->getProperties()['validationErrorMessages'])) ? $renderable->getProperties()['validationErrorMessages'] : ['']);
+            ValidationResultProvider::rememberErrorMessages($errorMessages);
             if (
                 $renderable instanceof SecureCheckElement
                 && isset($renderable->getProperties()['secureCheckSuccessMessage'])
