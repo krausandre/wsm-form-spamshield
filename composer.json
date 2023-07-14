@@ -52,5 +52,10 @@
 		"typo3/cms": {
 			"extension-key": "wsm_form_spamshield"
 		}
+	},
+	"scripts": {
+		"prepare-release": [
+			"rm .gitignore"
+		]
 	}
 }
