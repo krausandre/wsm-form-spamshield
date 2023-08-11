@@ -27,5 +27,5 @@ $EM_CONF['wsm_form_spamshield'] = [
     'author' => 'Andre Kraus',
     'author_email' => 'info@website-mensch.de',
     'author_company' => 'Website Mensch',
-    'version' => '1.3.1',
+    'version' => '1.3.2',
 ];
