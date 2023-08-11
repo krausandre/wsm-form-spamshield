@@ -38,18 +38,22 @@ class AfterSubmitHook
         if ($renderable->getType() === 'SecureCheck') {
             // remember the value for the validator
             ValidationResultProvider::rememberValidation('' . $elementValue);
-            $errorMessages = (($renderable->getProperties()['validationErrorMessages'] !== null && is_array($renderable->getProperties()['validationErrorMessages'])) ? $renderable->getProperties()['validationErrorMessages'] : [0 => []]);
+            $errorMessages = [0 => []];
+            if ( is_array($renderable->getProperties())
+                && array_key_exists('validationErrorMessages', $renderable->getProperties())
+                && is_array($renderable->getProperties()['validationErrorMessages'])
+            ) {
+                $errorMessages = $renderable->getProperties()['validationErrorMessages'];
+            }
             ValidationResultProvider::rememberErrorMessages($errorMessages);
             if (
                 $renderable instanceof SecureCheckElement
-                && isset($renderable->getProperties()['secureCheckSuccessMessage'])
+                && is_array($renderable->getProperties())
+                && array_key_exists('secureCheckSuccessMessage', $renderable->getProperties())
                 && strlen('' . $renderable->getProperties()['secureCheckSuccessMessage']) > 0
             ) {
                 $elementValue = $renderable->getProperties()['secureCheckSuccessMessage'];
             } else {
-                // /** @var LanguageService */
-                // $languageService = GeneralUtility::makeInstance(LanguageService::class);
-                // $elementValue = $languageService->sL('LLL:EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf:spamshield.finisher.message');
                 $elementValue = LocalizationUtility::translate('spamshield.finisher.message', 'wsm_form_spamshield');
             }
         }
