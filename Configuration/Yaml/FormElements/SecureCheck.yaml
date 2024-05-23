@@ -82,9 +82,6 @@ TYPO3:
               implementationClassName: 'WebsiteMensch\FormSpamshield\Domain\Model\FormElements\SecureCheckElement'
               properties:
                 elementClassAttribute: 'security-check-input'
-              validators:
-                -
-                  identifier: SpamSecurityCheck
               renderingOptions:
                 translation:
                   translationFiles:
