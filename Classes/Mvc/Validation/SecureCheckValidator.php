@@ -251,7 +251,7 @@ class SecureCheckValidator extends AbstractValidator
         }
         $this->addError(
             $this->translateErrorMessage(
-                'form.validator.securitycheck.notvalid',
+                'LLL:EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf:form.validator.securitycheck.notvalid',
                 'wsmFormSpamshield'
             ),
             1623240740
