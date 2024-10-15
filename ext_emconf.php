@@ -9,8 +9,8 @@ $EM_CONF['wsm_form_spamshield'] = [
     'category' => 'services',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-12.4.99',
-            'form' => '10.4.0-12.4.99',
+            'typo3' => '10.4.0-13.4.99',
+            'form' => '10.4.0-13.4.99',
         ],
         'conflicts' => [
         ],
@@ -27,5 +27,5 @@ $EM_CONF['wsm_form_spamshield'] = [
     'author' => 'Andre Kraus',
     'author_email' => 'info@website-mensch.de',
     'author_company' => 'Website Mensch',
-    'version' => '1.4.0',
+    'version' => '1.5.0',
 ];
