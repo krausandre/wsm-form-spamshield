@@ -54,7 +54,7 @@ class AfterSubmitHook
             ) {
                 $elementValue = $renderable->getProperties()['secureCheckSuccessMessage'];
             } else {
-                $elementValue = LocalizationUtility::translate('spamshield.finisher.message', 'wsm_form_spamshield');
+                $elementValue = LocalizationUtility::translate('LLL:EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf:spamshield.finisher.message', 'wsm_form_spamshield');
             }
         }
         return $elementValue;
