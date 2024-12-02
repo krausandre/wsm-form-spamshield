@@ -6,10 +6,10 @@ TYPO3:
           formElementsDefinition:
             SecureCheck:
               formEditor:
-                label: 'Simple Spam Protection'
+                label: wsm.form_spamshield.title
                 group: custom
                 groupSorting: 1000
-                iconIdentifier: 'wsm-form-spamshield'
+                iconIdentifier: wsm-form-spamshield
                 editors:
                   100:
                     identifier: header
@@ -85,6 +85,6 @@ TYPO3:
               renderingOptions:
                 translation:
                   translationFiles:
-                    1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Language/locallang.xlf'
+                    1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf'
                 partialRootPaths:
                   1588750201: 'EXT:wsm_form_spamshield/Resources/Private/Frontend/Partials/Forms'

@@ -12,6 +12,8 @@ TYPO3:
           formEditor:
             formEditorPartials:
               FormElement-SecureCheck: 'Stage/SimpleTemplate'
-            dynamicRequireJsModules:
+            dynamicJavaScriptModules:
               additionalViewModelModules:
-                1588750201: 'TYPO3/CMS/WsmFormSpamshield/Backend/FormEditor/SecureCheckViewModel'
+                1588750201: '@websitemensch/wsm-form-spamshield/backend/form-editor/securecheck-view-model.js'
+            translationFiles:
+              1673535916: 'EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf'
