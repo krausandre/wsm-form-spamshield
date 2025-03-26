@@ -27,8 +27,6 @@
         /* get some default values */
         securityTests['displayWidth'] = screen.width;
         securityTests['displayHeight'] = screen.height;
-        securityTests['formRenderedHeight'] = form.offsetHeight;
-        securityTests['formRenderedWidth'] = form.offsetWidth;
     }
 
     /* Scroll */
@@ -62,6 +60,9 @@
     function setValue() {
         if (Array.isArray(securityFieldList)) {
             securityFieldList.forEach(function (securityField, index, arr) {
+                let form = securityField.closest('form');
+                securityTests['formRenderedHeight'] = form.offsetHeight;
+                securityTests['formRenderedWidth'] = form.offsetWidth;
                 securityField.value = JSON.stringify(securityTests);
             });
         }
