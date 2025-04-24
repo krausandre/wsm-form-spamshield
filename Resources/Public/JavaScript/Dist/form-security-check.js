@@ -27,6 +27,7 @@
         /* get some default values */
         securityTests['displayWidth'] = screen.width;
         securityTests['displayHeight'] = screen.height;
+        securityTests['webdriver'] = navigator.webdriver ? 1 : 0;
     }
 
     /* Scroll */
