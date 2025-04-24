@@ -49,7 +49,15 @@ class SecureCheckValidator extends AbstractValidator
         // $securityChecks = json_decode($value, true);
         $securityChecks = json_decode(ValidationResultProvider::getValidationResult(), true);
 
-        // TODO check why validator is executed twice
+        if (function_exists('getallheaders')) {
+            $headers = getallheaders();
+            if (!array_key_exists('Accept-Language', $headers) || empty($headers['Accept-Language'])
+                || !array_key_exists('Accept-Encoding', $headers) || empty($headers['Accept-Encoding'])
+            ) {
+                $this->displayError();
+                return;
+            }
+        }
 
         /**
          * Security Level default 6
@@ -66,8 +74,14 @@ class SecureCheckValidator extends AbstractValidator
         }
 
         // Start working
-        // Check if a basic set of informations is given for identify a human
+        // Check if a basic set of information is given for identify a human
         if (!$this->checkMinimumInfos($securityChecks)) {
+            $this->displayError();
+            return;
+        }
+
+        // Check if browser is a classical headless browser
+        if ($securityChecks['displayWidth'] === 800 && $securityChecks['displayHeight'] === 600 || $securityChecks['webdriver'] === 1) {
             $this->displayError();
             return;
         }
@@ -110,7 +124,7 @@ class SecureCheckValidator extends AbstractValidator
     protected function checkMinimumInfos(array $checks): bool
     {
         // this minimum values must be set:
-        $minimValues = ['seconds', 'displayWidth', 'displayHeight', 'formRenderedHeight', 'formRenderedWidth'];
+        $minimValues = ['seconds', 'displayWidth', 'displayHeight', 'formRenderedHeight', 'formRenderedWidth', 'webdriver'];
 
         foreach ($minimValues as $neededCheck) {
             $this->testCounter++;
