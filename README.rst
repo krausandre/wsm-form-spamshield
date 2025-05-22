@@ -63,3 +63,29 @@ Add the security check field with validator to your formdefinition like this:
 
 
 You can also add the security check field with a validator to your formdefinition via the form editor. This could be helpful in some cases.
+
+
+How to translate messages
+==========================
+
+The example above with translated messages:
+
+
+.. code-block:: yaml
+
+    -
+        type: SecureCheck
+        identifier: securitycheck
+        label: 'Security check against robots'
+        validators:
+            -
+                identifier: SpamSecurityCheck
+                options:
+                    securityLevel: 5
+                    formTimeout: 10
+        properties:
+            secureCheckSuccessMessage: 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:form-validation-success-message'
+            validationErrorMessages:
+                -
+                    code: 1221559976
+                    message: 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:form-validation-error-message'

@@ -44,6 +44,9 @@ class AfterSubmitHook
                 && is_array($renderable->getProperties()['validationErrorMessages'])
             ) {
                 $errorMessages = $renderable->getProperties()['validationErrorMessages'];
+                if (array_key_exists(0, $errorMessages) && array_key_exists('message', $errorMessages[0]) && strpos($errorMessages[0]['message'], 'LLL:EXT:') !== false) {
+                    $errorMessages[0]['message'] = (LocalizationUtility::translate($errorMessages[0]['message']) ? LocalizationUtility::translate($errorMessages[0]['message']) : 'Translation error');
+                }
             }
             ValidationResultProvider::rememberErrorMessages($errorMessages);
             if (
@@ -53,6 +56,9 @@ class AfterSubmitHook
                 && strlen('' . $renderable->getProperties()['secureCheckSuccessMessage']) > 0
             ) {
                 $elementValue = $renderable->getProperties()['secureCheckSuccessMessage'];
+                if (strpos($elementValue, 'LLL:EXT:') !== false) {
+                    $elementValue = (LocalizationUtility::translate($elementValue) ? LocalizationUtility::translate($elementValue) : 'Translation error');
+                }
             } else {
                 $elementValue = LocalizationUtility::translate('spamshield.finisher.message', 'wsm_form_spamshield');
             }
