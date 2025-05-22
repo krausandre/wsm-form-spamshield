@@ -51,8 +51,8 @@ class SecureCheckValidator extends AbstractValidator
 
         if (function_exists('getallheaders')) {
             $headers = getallheaders();
-            if (!array_key_exists('Accept-Language', $headers) || empty($headers['Accept-Language'])
-                || !array_key_exists('Accept-Encoding', $headers) || empty($headers['Accept-Encoding'])
+            if ( (!array_key_exists('Accept-Language', $headers) || empty($headers['Accept-Language']))
+                && (!array_key_exists('Accept-Encoding', $headers) || empty($headers['Accept-Encoding']))
             ) {
                 $this->displayError();
                 return;
@@ -102,6 +102,10 @@ class SecureCheckValidator extends AbstractValidator
         $this->isMobile();
         // Check if all values are valid
         foreach ($securityChecks as $key => $check) {
+            if (!is_int($check)) {
+                $this->displayError();
+                return;
+            }
             $this->validateCheck($key, $check);
         }
 
