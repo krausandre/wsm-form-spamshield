@@ -49,16 +49,6 @@ class SecureCheckValidator extends AbstractValidator
         // $securityChecks = json_decode($value, true);
         $securityChecks = json_decode(ValidationResultProvider::getValidationResult(), true);
 
-        if (function_exists('getallheaders')) {
-            $headers = getallheaders();
-            if ( (!array_key_exists('Accept-Language', $headers) || empty($headers['Accept-Language']))
-                && (!array_key_exists('Accept-Encoding', $headers) || empty($headers['Accept-Encoding']))
-            ) {
-                $this->displayError();
-                return;
-            }
-        }
-
         /**
          * Security Level default 6
          * @var int
