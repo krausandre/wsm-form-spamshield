@@ -51,6 +51,7 @@ TYPO3:
                       options:
                         securityLevel: 6
                         formTimeout: 5
+                        strictMode: true
                 propertyCollections:
                   validators:
                     40:
@@ -76,6 +77,12 @@ TYPO3:
                           propertyPath: options.formTimeout
                           propertyValidators:
                             10: Integer
+                        400:
+                          identifier: strictMode
+                          templateName: Inspector-CheckboxEditor
+                          label: 'Strict Mode:'
+                          fieldExplanationText: '(Default: enabled) Validates all expected security checks, not just submitted ones. Disable for legacy behavior.'
+                          propertyPath: options.strictMode
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor

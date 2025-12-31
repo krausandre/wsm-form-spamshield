@@ -31,12 +31,28 @@ class SecureCheckValidator extends AbstractValidator
     protected $countValidTests = 0;
 
     /**
+     * Number of ALL tests
+     * @var int
+     */
+    protected int $knownTests = 26;
+
+    /**
      * Supported options
      * @var array<string, Array<string>> $supportedOptions
      */
     protected $supportedOptions = [
         'securityLevel' => ['', 'Security Level', 'string'],
         'formTimeout' => [5, 'Form timeout, minimum amount of seconds before form can be send', 'int'],
+        'strictMode' => [true, 'Strict mode: validate all expected keys, not just submitted ones', 'bool'],
+    ];
+
+    /**
+     * All keys that should be validated (used in strictMode)
+     * @var array<string>
+     */
+    protected array $allExpectedKeys = [
+        'seconds', 'displayWidth', 'displayHeight', 'formRenderedHeight', 'formRenderedWidth',
+        'scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace'
     ];
 
     protected function isValid($value): void
@@ -90,18 +106,36 @@ class SecureCheckValidator extends AbstractValidator
         $this->checkAdditionalInfos($securityChecks);
         // Check mobile device
         $this->isMobile();
+
+        // Determine strictMode setting (default: true)
+        $strictMode = !array_key_exists('strictMode', $this->options) || $this->options['strictMode'] === true;
+
         // Check if all values are valid
-        foreach ($securityChecks as $key => $check) {
-            if (!is_int($check)) {
-                $this->displayError();
-                return;
+        if ($strictMode) {
+            // In strictMode: validate ALL expected keys, using 0 for missing values
+            foreach ($this->allExpectedKeys as $key) {
+                $check = $securityChecks[$key] ?? 0;
+                if (!is_int($check)) {
+                    $this->displayError();
+                    return;
+                }
+                $this->validateCheck($key, $check);
             }
-            $this->validateCheck($key, $check);
+        } else {
+            // Legacy behavior: only validate submitted keys
+            foreach ($securityChecks as $key => $check) {
+                if (!is_int($check)) {
+                    $this->displayError();
+                    return;
+                }
+                $this->validateCheck($key, $check);
+            }
         }
 
         // calculate security level: percentage of valid tests, * 100 and parsed to int to compare with security level.
+        $testCounter = ($this->testCounter > $this->knownTests) ? $this->testCounter : $this->knownTests;
         $securityCalculation = intval(
-            ($this->countValidTests / $this->testCounter) * 100
+            ($this->countValidTests / $testCounter) * 100
         );
 
         // finally check if security level is given:

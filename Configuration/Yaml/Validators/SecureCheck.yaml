@@ -13,3 +13,4 @@ TYPO3:
                   options:
                     securityLevel: 6
                     formTimeout: 5
+                    strictMode: true
