@@ -121,6 +121,12 @@ class SecureCheckValidator extends AbstractValidator
             return;
         }
 
+        // Check for suspiciously fast typing (no human types > 15 keys/second sustained)
+        if ($this->detectSuspiciousTypingSpeed($securityChecks)) {
+            $this->displayError();
+            return;
+        }
+
         // Determine strictMode setting (default: true)
         $strictMode = !array_key_exists('strictMode', $this->options) || $this->options['strictMode'] === true;
 
@@ -305,6 +311,29 @@ class SecureCheckValidator extends AbstractValidator
 
         // All three conditions must be true to trigger bot detection
         return $noMouseMove && $noScroll && $clickAtOrigin;
+    }
+
+    /**
+     * Detect suspiciously fast typing speed.
+     * No human can sustain more than ~15 keystrokes per second while filling a form.
+     * This catches bots that simulate rapid keystrokes.
+     * @param array<string, int> $checks
+     */
+    protected function detectSuspiciousTypingSpeed(array $checks): bool
+    {
+        $keypress = $checks['keypress'] ?? 0;
+        $seconds = $checks['seconds'] ?? 1;
+
+        // Avoid division by zero
+        if ($seconds < 1) {
+            $seconds = 1;
+        }
+
+        // Calculate keystrokes per second
+        $keystrokesPerSecond = $keypress / $seconds;
+
+        // More than 15 keystrokes per second is superhuman
+        return $keystrokesPerSecond > 15;
     }
 
     /**
