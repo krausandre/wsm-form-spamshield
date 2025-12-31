@@ -17,11 +17,19 @@ The second component is a validator, which checks the result of the JavaScript.
 You can configure a security level from 1 to 10 in your form field definition, which the validator respects.
 1 means 10% of the security checks have to be successful, and 10 means 100% have to be successful.
 
+Recommendation: Set the security level to 7 or 8 for a good balance between security and usability.
+
 Please remember accessibility, that there are some people e.g. who can not use a mouse. So setting the security level to 9 or 10 might not be accessible for some people.
 
-There is the option to set a form timeout. This is a value in seconds, which defines a timeout before the form submission is accepted. E.g. robots are very fast, so a human 
-needs more time to fill out a form. You can set a custom value based on what you think is the minimum number of seconds humans need to fill out the form. (Remember that 
+There is the option to set a form timeout. This is a value in seconds, which defines a timeout before the form submission is accepted. E.g. robots are very fast, so a human
+needs more time to fill out a form. You can set a custom value based on what you think is the minimum number of seconds humans need to fill out the form. (Remember that
 browser autofill can be very fast.)
+
+There is a strict mode, which can be disabled for some special use cases.
+
+There is also a "require whitespace" option (enabled by default), which requires users to press the spacebar at least once.
+This is effective against bots that submit forms with random strings without spaces.
+Disable this option for forms without free text fields, e.g. multiple choice forms.
 
 How to install
 ==============
@@ -52,8 +60,10 @@ Add the security check field with validator to your formdefinition like this:
             -
                 identifier: SpamSecurityCheck
                 options:
-                    securityLevel: 5
+                    securityLevel: 7
                     formTimeout: 10
+                    strictMode: true
+                    requireWhitespace: true
         properties:
             secureCheckSuccessMessage: 'Validation passed'
             validationErrorMessages:
@@ -81,8 +91,10 @@ The example above with translated messages:
             -
                 identifier: SpamSecurityCheck
                 options:
-                    securityLevel: 5
+                    securityLevel: 7
                     formTimeout: 10
+                    strictMode: true
+                    requireWhitespace: true
         properties:
             secureCheckSuccessMessage: 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:form-validation-success-message'
             validationErrorMessages:

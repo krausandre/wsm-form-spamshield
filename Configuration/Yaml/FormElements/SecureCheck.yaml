@@ -49,8 +49,10 @@ TYPO3:
                     -
                       identifier: SpamSecurityCheck
                       options:
-                        securityLevel: 6
+                        securityLevel: 7
                         formTimeout: 5
+                        strictMode: true
+                        requireWhitespace: true
                 propertyCollections:
                   validators:
                     40:
@@ -64,7 +66,7 @@ TYPO3:
                           identifier: securityLevel
                           templateName: Inspector-TextEditor
                           label: 'Security Level (1-10):'
-                          fieldExplanationText: '(Default: 6) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
+                          fieldExplanationText: '(Default: 7) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
                           propertyPath: options.securityLevel
                           propertyValidators:
                             10: Integer

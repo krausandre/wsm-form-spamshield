@@ -31,12 +31,29 @@ class SecureCheckValidator extends AbstractValidator
     protected $countValidTests = 0;
 
     /**
+     * Number of ALL tests
+     * @var int
+     */
+    protected $knownTests = 26;
+
+    /**
      * Supported options
      * @var array<string, Array<string>> $supportedOptions
      */
     protected $supportedOptions = [
         'securityLevel' => ['', 'Security Level', 'string'],
         'formTimeout' => [5, 'Form timeout, minimum amount of seconds before form can be send', 'int'],
+        'strictMode' => [true, 'Strict mode: validate all expected keys, not just submitted ones', 'bool'],
+        'requireWhitespace' => [true, 'Require whitespace key presses (for forms with free text fields)', 'bool'],
+    ];
+
+    /**
+     * All keys that should be validated (used in strictMode)
+     * @var array<string>
+     */
+    protected $allExpectedKeys = [
+        'seconds', 'displayWidth', 'displayHeight', 'formRenderedHeight', 'formRenderedWidth',
+        'scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace'
     ];
 
     protected function isValid($value): void
@@ -89,19 +106,56 @@ class SecureCheckValidator extends AbstractValidator
         // Check additional infos
         $this->checkAdditionalInfos($securityChecks);
         // Check mobile device
-        $this->isMobile();
+        $isMobile = $this->isMobile();
+
+        // Check for suspicious bot pattern (non-mobile with no mouse activity)
+        if (!$isMobile && $this->detectBotPattern($securityChecks)) {
+            $this->displayError();
+            return;
+        }
+
+        // Check whitespace requirement (default: true, for forms with free text fields)
+        $requireWhitespace = !array_key_exists('requireWhitespace', $this->options) || $this->options['requireWhitespace'] === true;
+        if ($requireWhitespace && (!isset($securityChecks['pressedWhiteSpace']) || $securityChecks['pressedWhiteSpace'] < 1)) {
+            $this->displayError();
+            return;
+        }
+
+        // Check for suspiciously fast typing (no human types > 15 keys/second sustained)
+        if ($this->detectSuspiciousTypingSpeed($securityChecks)) {
+            $this->displayError();
+            return;
+        }
+
+        // Determine strictMode setting (default: true)
+        $strictMode = !array_key_exists('strictMode', $this->options) || $this->options['strictMode'] === true;
+
         // Check if all values are valid
-        foreach ($securityChecks as $key => $check) {
-            if (!is_int($check)) {
-                $this->displayError();
-                return;
+        if ($strictMode) {
+            // In strictMode: validate ALL expected keys, using 0 for missing values
+            foreach ($this->allExpectedKeys as $key) {
+                $check = $securityChecks[$key] ?? 0;
+                if (!is_int($check)) {
+                    $this->displayError();
+                    return;
+                }
+                $this->validateCheck($key, $check);
             }
-            $this->validateCheck($key, $check);
+        } else {
+            // Legacy behavior: only validate submitted keys
+            foreach ($securityChecks as $key => $check) {
+                if (!is_int($check)) {
+                    $this->displayError();
+                    return;
+                }
+                $this->validateCheck($key, $check);
+            }
         }
 
         // calculate security level: percentage of valid tests, * 100 and parsed to int to compare with security level.
+        $testCounter = ($this->testCounter > $this->knownTests) ? $this->testCounter : $this->knownTests;
         $securityCalculation = intval(
-            ($this->countValidTests / $this->testCounter) * 100
+            ($this->countValidTests / $testCounter) * 100
         );
 
         // finally check if security level is given:
@@ -238,6 +292,48 @@ class SecureCheckValidator extends AbstractValidator
         } else {
             return false;
         }
+    }
+
+    /**
+     * Detect suspicious bot pattern: desktop device with no mouse/scroll activity.
+     * A real desktop user would have at least some mouse movement or scrolling.
+     * Keyboard-only users (A11Y) typically still generate scroll events via arrow keys.
+     * @param array<string, int> $checks
+     */
+    protected function detectBotPattern(array $checks): bool
+    {
+        $noMouseMove = !isset($checks['mousemove']) || $checks['mousemove'] <= 2;
+        $noScroll = !isset($checks['scroll']) || $checks['scroll'] <= 5;
+        $clickAtOrigin = (
+            (!isset($checks['mouseClickX']) || $checks['mouseClickX'] <= 10) &&
+            (!isset($checks['mouseClickY']) || $checks['mouseClickY'] <= 10)
+        );
+
+        // All three conditions must be true to trigger bot detection
+        return $noMouseMove && $noScroll && $clickAtOrigin;
+    }
+
+    /**
+     * Detect suspiciously fast typing speed.
+     * No human can sustain more than ~15 keystrokes per second while filling a form.
+     * This catches bots that simulate rapid keystrokes.
+     * @param array<string, int> $checks
+     */
+    protected function detectSuspiciousTypingSpeed(array $checks): bool
+    {
+        $keypress = $checks['keypress'] ?? 0;
+        $seconds = $checks['seconds'] ?? 1;
+
+        // Avoid division by zero
+        if ($seconds < 1) {
+            $seconds = 1;
+        }
+
+        // Calculate keystrokes per second
+        $keystrokesPerSecond = $keypress / $seconds;
+
+        // More than 15 keystrokes per second is superhuman
+        return $keystrokesPerSecond > 15;
     }
 
     /**
