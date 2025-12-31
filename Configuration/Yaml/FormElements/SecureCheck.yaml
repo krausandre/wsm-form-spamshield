@@ -49,9 +49,10 @@ TYPO3:
                     -
                       identifier: SpamSecurityCheck
                       options:
-                        securityLevel: 6
+                        securityLevel: 7
                         formTimeout: 5
                         strictMode: true
+                        requireWhitespace: true
                 propertyCollections:
                   validators:
                     40:
@@ -65,7 +66,7 @@ TYPO3:
                           identifier: securityLevel
                           templateName: Inspector-TextEditor
                           label: 'Security Level (1-10):'
-                          fieldExplanationText: '(Default: 6) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
+                          fieldExplanationText: '(Default: 7) With the security level you can determine what % of the tests must be passed in increments of 10. Please note that at level 10 the form may no longer be able to be sent.'
                           propertyPath: options.securityLevel
                           propertyValidators:
                             10: Integer
@@ -83,6 +84,12 @@ TYPO3:
                           label: 'Strict Mode:'
                           fieldExplanationText: '(Default: enabled) Validates all expected security checks, not just submitted ones. Disable for legacy behavior.'
                           propertyPath: options.strictMode
+                        500:
+                          identifier: requireWhitespace
+                          templateName: Inspector-CheckboxEditor
+                          label: 'Require Whitespace:'
+                          fieldExplanationText: '(Default: enabled) Requires at least one whitespace key press. Disable for forms without free text fields (e.g. multiple choice only).'
+                          propertyPath: options.requireWhitespace
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor

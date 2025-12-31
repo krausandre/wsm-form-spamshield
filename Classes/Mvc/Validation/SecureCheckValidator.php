@@ -44,6 +44,7 @@ class SecureCheckValidator extends AbstractValidator
         'securityLevel' => ['', 'Security Level', 'string'],
         'formTimeout' => [5, 'Form timeout, minimum amount of seconds before form can be send', 'int'],
         'strictMode' => [true, 'Strict mode: validate all expected keys, not just submitted ones', 'bool'],
+        'requireWhitespace' => [true, 'Require whitespace key presses (for forms with free text fields)', 'bool'],
     ];
 
     /**
@@ -105,7 +106,20 @@ class SecureCheckValidator extends AbstractValidator
         // Check additional infos
         $this->checkAdditionalInfos($securityChecks);
         // Check mobile device
-        $this->isMobile();
+        $isMobile = $this->isMobile();
+
+        // Check for suspicious bot pattern (non-mobile with no mouse activity)
+        if (!$isMobile && $this->detectBotPattern($securityChecks)) {
+            $this->displayError();
+            return;
+        }
+
+        // Check whitespace requirement (default: true, for forms with free text fields)
+        $requireWhitespace = !array_key_exists('requireWhitespace', $this->options) || $this->options['requireWhitespace'] === true;
+        if ($requireWhitespace && (!isset($securityChecks['pressedWhiteSpace']) || $securityChecks['pressedWhiteSpace'] < 1)) {
+            $this->displayError();
+            return;
+        }
 
         // Determine strictMode setting (default: true)
         $strictMode = !array_key_exists('strictMode', $this->options) || $this->options['strictMode'] === true;
@@ -272,6 +286,25 @@ class SecureCheckValidator extends AbstractValidator
         } else {
             return false;
         }
+    }
+
+    /**
+     * Detect suspicious bot pattern: desktop device with no mouse/scroll activity.
+     * A real desktop user would have at least some mouse movement or scrolling.
+     * Keyboard-only users (A11Y) typically still generate scroll events via arrow keys.
+     * @param array<string, int> $checks
+     */
+    protected function detectBotPattern(array $checks): bool
+    {
+        $noMouseMove = !isset($checks['mousemove']) || $checks['mousemove'] <= 2;
+        $noScroll = !isset($checks['scroll']) || $checks['scroll'] <= 5;
+        $clickAtOrigin = (
+            (!isset($checks['mouseClickX']) || $checks['mouseClickX'] <= 10) &&
+            (!isset($checks['mouseClickY']) || $checks['mouseClickY'] <= 10)
+        );
+
+        // All three conditions must be true to trigger bot detection
+        return $noMouseMove && $noScroll && $clickAtOrigin;
     }
 
     /**

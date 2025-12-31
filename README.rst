@@ -25,7 +25,11 @@ There is the option to set a form timeout. This is a value in seconds, which def
 needs more time to fill out a form. You can set a custom value based on what you think is the minimum number of seconds humans need to fill out the form. (Remember that 
 browser autofill can be very fast.)
 
-There is a strict mode, which can be disabled for some special use cases, e.g. for Multiple Choice forms without text input fields.
+There is a strict mode, which can be disabled for some special use cases.
+
+There is also a "require whitespace" option (enabled by default), which requires users to press the spacebar at least once.
+This is effective against bots that submit forms with random strings without spaces.
+Disable this option for forms without free text fields, e.g. multiple choice forms.
 
 How to install
 ==============
@@ -59,6 +63,7 @@ Add the security check field with validator to your formdefinition like this:
                     securityLevel: 7
                     formTimeout: 10
                     strictMode: true
+                    requireWhitespace: true
         properties:
             secureCheckSuccessMessage: 'Validation passed'
             validationErrorMessages:
@@ -89,6 +94,7 @@ The example above with translated messages:
                     securityLevel: 7
                     formTimeout: 10
                     strictMode: true
+                    requireWhitespace: true
         properties:
             secureCheckSuccessMessage: 'LLL:EXT:my_extension/Resources/Private/Language/locallang.xlf:form-validation-success-message'
             validationErrorMessages:
