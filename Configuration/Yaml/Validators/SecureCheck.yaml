@@ -11,6 +11,6 @@ TYPO3:
                 label: 'Spam Security Settings'
                 predefinedDefaults:
                   options:
-                    securityLevel: 6
+                    securityLevel: 7
                     formTimeout: 5
                     strictMode: true
