@@ -78,6 +78,20 @@ TYPO3:
                           propertyPath: options.formTimeout
                           propertyValidators:
                             10: Integer
+                        400:
+                          identifier: strictMode
+                          templateName: Inspector-CheckboxEditor
+                          label: 'Strict mode'
+                          fieldExplanationText: 'Validate all expected interaction keys. When disabled, only submitted keys are validated (legacy behavior).'
+                          propertyPath: options.strictMode
+                          defaultValue: true
+                        500:
+                          identifier: requireWhitespace
+                          templateName: Inspector-CheckboxEditor
+                          label: 'Require whitespace'
+                          fieldExplanationText: 'Require spacebar presses. Enable for forms with free text fields (contact forms). Disable for forms without text input.'
+                          propertyPath: options.requireWhitespace
+                          defaultValue: true
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor

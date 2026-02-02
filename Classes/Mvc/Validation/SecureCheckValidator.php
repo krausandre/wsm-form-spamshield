@@ -34,7 +34,7 @@ class SecureCheckValidator extends AbstractValidator
      * Number of ALL tests
      * @var int
      */
-    protected $knownTests = 26;
+    protected $knownTests = 28;
 
     /**
      * Supported options
@@ -53,7 +53,8 @@ class SecureCheckValidator extends AbstractValidator
      */
     protected $allExpectedKeys = [
         'seconds', 'displayWidth', 'displayHeight', 'formRenderedHeight', 'formRenderedWidth',
-        'scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace'
+        'scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace',
+        'touchEvents'
     ];
 
     protected function isValid($value): void
@@ -107,9 +108,12 @@ class SecureCheckValidator extends AbstractValidator
         $this->checkAdditionalInfos($securityChecks);
         // Check mobile device
         $isMobile = $this->isMobile();
+        // Check for touch events (works even when "Request Desktop Site" is enabled)
+        $hasTouchEvents = isset($securityChecks['touchEvents']) && $securityChecks['touchEvents'] > 0;
 
-        // Check for suspicious bot pattern (non-mobile with no mouse activity)
-        if (!$isMobile && $this->detectBotPattern($securityChecks)) {
+        // Check for suspicious bot pattern (only for non-mobile/non-touch devices)
+        // Skip this check if mobile UA or touch events detected - touch users don't have mouse
+        if (!$isMobile && !$hasTouchEvents && $this->detectBotPattern($securityChecks)) {
             $this->displayError();
             return;
         }
@@ -191,7 +195,7 @@ class SecureCheckValidator extends AbstractValidator
     protected function checkAdditionalInfos(array $checks): bool
     {
         // needed values for this level:
-        $minimValues = ['scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace'];
+        $minimValues = ['scroll', 'mousemove', 'mouseClickX', 'mouseClickY', 'keypress', 'pressedAT', 'pressedWhiteSpace', 'touchEvents'];
         foreach ($minimValues as $neededCheck) {
             $this->testCounter++;
             if (array_key_exists($neededCheck, $checks)) {
@@ -265,6 +269,11 @@ class SecureCheckValidator extends AbstractValidator
         if ($key === 'pressedWhiteSpace' && $check > 0) {
             // Maybe this is not necessary for every form, but if the user writes a message,
             // he needs whitspaces between the words. Also for names or company names.
+            $valid = true;
+        }
+        if ($key === 'touchEvents' && $check > 0) {
+            // Touch events indicate a real touch device user (mobile/tablet)
+            // This helps validate users even when "Request Desktop Site" is enabled
             $valid = true;
         }
 
