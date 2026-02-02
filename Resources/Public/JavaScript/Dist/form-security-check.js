@@ -49,11 +49,22 @@
         setValue();
     });
 
-    /* Any key press */
-    document.addEventListener('keypress', (event) => {
+    /* Any key press - using keydown for better mobile compatibility */
+    document.addEventListener('keydown', (event) => {
         if (event.key === "@") securityTests['pressedAT'] = 1;
-        if (event.key === " ") securityTests['pressedWhiteSpace'] = 1;
+        if (event.key === " " || event.code === "Space") securityTests['pressedWhiteSpace'] = 1;
         securityTests['keypress'] = ((securityTests['keypress'] !== undefined) ? securityTests['keypress'] + 1 : 1);
+        setValue();
+    });
+
+    /* Touch events - detect touch device interaction */
+    document.addEventListener('touchstart', (event) => {
+        securityTests['touchEvents'] = ((securityTests['touchEvents'] !== undefined) ? securityTests['touchEvents'] + 1 : 1);
+        setValue();
+    });
+
+    document.addEventListener('touchmove', (event) => {
+        securityTests['touchEvents'] = ((securityTests['touchEvents'] !== undefined) ? securityTests['touchEvents'] + 1 : 1);
         setValue();
     });
 

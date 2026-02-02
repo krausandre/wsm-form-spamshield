@@ -84,12 +84,14 @@ TYPO3:
                           label: 'Strict Mode:'
                           fieldExplanationText: '(Default: enabled) Validates all expected security checks, not just submitted ones. Disable for legacy behavior.'
                           propertyPath: options.strictMode
+                          defaultValue: true
                         500:
                           identifier: requireWhitespace
                           templateName: Inspector-CheckboxEditor
                           label: 'Require Whitespace:'
                           fieldExplanationText: '(Default: enabled) Requires at least one whitespace key press. Disable for forms without free text fields (e.g. multiple choice only).'
                           propertyPath: options.requireWhitespace
+                          defaultValue: true
                         9999:
                           identifier: removeButton
                           templateName: Inspector-RemoveElementEditor
