@@ -9,8 +9,8 @@ $EM_CONF['wsm_form_spamshield'] = [
     'category' => 'services',
     'constraints' => [
         'depends' => [
-            'typo3' => '13.4.0-13.4.99',
-            'form' => '13.4.0-13.4.99',
+            'typo3' => '14.0.0-14.99.99',
+            'form' => '14.0.0-14.99.99',
         ],
         'conflicts' => [
         ],
@@ -25,7 +25,7 @@ $EM_CONF['wsm_form_spamshield'] = [
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
     'author' => 'Andre Kraus',
-    'author_email' => 'info@website-mensch.de',
-    'author_company' => 'Website Mensch',
-    'version' => '2.2.2',
+    'author_email' => 'service@autodudes.de',
+    'author_company' => 'AutoDudes',
+    'version' => '14.0.0',
 ];

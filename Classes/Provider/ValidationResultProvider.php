@@ -15,29 +15,29 @@ namespace WebsiteMensch\FormSpamshield\Provider;
 
 class ValidationResultProvider
 {
+    private static string $validationResult = '';
+    private static array $errorMessages = [];
+
     public static function rememberValidation(string $value): void
     {
-        $_SESSION['wsm_form_spamshield'][1680905109]['securityCheckResult'] = $value;
+        self::$validationResult = $value;
     }
 
     public static function getValidationResult(): string
     {
-        if (!isset($_SESSION['wsm_form_spamshield'][1680905109]['securityCheckResult'])) {
-            return '';
-        }
-        return $_SESSION['wsm_form_spamshield'][1680905109]['securityCheckResult'];
+        return self::$validationResult;
     }
 
     public static function rememberErrorMessages(array $value): void
     {
-        $_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'] = $value;
+        self::$errorMessages = $value;
     }
 
     public static function getErrorMessages(): array
     {
-        if (!isset($_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'])) {
+        if (empty(self::$errorMessages)) {
             return [''];
         }
-        return $_SESSION['wsm_form_spamshield'][1689279306]['securityCheckErrorMessages'];
+        return self::$errorMessages;
     }
 }
