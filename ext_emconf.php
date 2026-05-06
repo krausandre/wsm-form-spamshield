@@ -27,5 +27,5 @@ $EM_CONF['wsm_form_spamshield'] = [
     'author' => 'Andre Kraus',
     'author_email' => 'service@autodudes.de',
     'author_company' => 'AutoDudes',
-    'version' => '14.0.0',
+    'version' => '14.0.1',
 ];

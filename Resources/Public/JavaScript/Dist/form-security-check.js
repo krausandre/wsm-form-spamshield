@@ -57,6 +57,20 @@
         setValue();
     });
 
+    /* Input events - reliable on mobile virtual keyboards and IME composition,
+       where keydown often reports key="Unidentified" / keyCode=229 and never sees the space. */
+    document.addEventListener('input', (event) => {
+        if (typeof event.data === 'string') {
+            if (event.data.indexOf(' ') !== -1) securityTests['pressedWhiteSpace'] = 1;
+            if (event.data.indexOf('@') !== -1) securityTests['pressedAT'] = 1;
+        } else if (event.target && typeof event.target.value === 'string') {
+            /* Fallback for composition / autocorrect where event.data is null */
+            if (/\s/.test(event.target.value)) securityTests['pressedWhiteSpace'] = 1;
+            if (event.target.value.indexOf('@') !== -1) securityTests['pressedAT'] = 1;
+        }
+        setValue();
+    });
+
     /* Touch events - detect touch device interaction */
     document.addEventListener('touchstart', (event) => {
         securityTests['touchEvents'] = ((securityTests['touchEvents'] !== undefined) ? securityTests['touchEvents'] + 1 : 1);
