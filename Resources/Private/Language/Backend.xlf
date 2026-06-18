@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2019-06-14UTC21:34:060">
-        <header>
-            <authorName>Andre Kraus</authorName>
-            <authorEmail>info@website-mensch.de</authorEmail>
-        </header>
-        <body>
-            <trans-unit id="wsm.form_spamshield.title">
-                <source>Simple Spam Protection</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:form_spamshield/Resources/Private/Language/Backend.xlf" date="2026-06-18T16:29:37Z">
+		<header>
+			<authorName>Andre Kraus</authorName>
+			<authorEmail>info@website-mensch.de</authorEmail>
+		</header>
+		<body>
+			<trans-unit id="setting.autoInject">
+				<source><![CDATA[Auto inject: add the spam SecureCheck to every form automatically]]></source>
+			</trans-unit>
+			<trans-unit id="setting.formTimeout">
+				<source><![CDATA[Form timeout: minimum seconds before a form may be sent]]></source>
+			</trans-unit>
+			<trans-unit id="setting.requireWhitespace">
+				<source><![CDATA[Require whitespace: expect at least one whitespace key press]]></source>
+			</trans-unit>
+			<trans-unit id="setting.securityLevel">
+				<source><![CDATA[Security level (1-10): percentage of checks that must pass]]></source>
+			</trans-unit>
+			<trans-unit id="setting.strictMode">
+				<source><![CDATA[Strict mode: validate all expected checks, not only submitted ones]]></source>
+			</trans-unit>
+			<trans-unit id="settingGroup.autoInject">
+				<source><![CDATA[Auto-inject]]></source>
+			</trans-unit>
+			<trans-unit id="wsm.form_spamshield.title">
+				<source><![CDATA[Simple Spam Protection]]></source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
