@@ -5,6 +5,7 @@ defined('TYPO3') or die();
 call_user_func(static function () {
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit'][1680904711] = \WebsiteMensch\FormSpamshield\Hooks\AfterSubmitHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterInitializeCurrentPage'][1680904712] = \WebsiteMensch\FormSpamshield\Hooks\AutoInjectHook::class;
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
         trim('

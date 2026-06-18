@@ -1,0 +1,16 @@
+# customsubcategory=autoInject=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:settingGroup.autoInject
+
+# cat=basic/autoInject/10; type=boolean; label=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:setting.autoInject
+autoInject = 0
+
+# cat=basic/autoInject/20; type=int+; label=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:setting.securityLevel
+securityLevel = 7
+
+# cat=basic/autoInject/30; type=int+; label=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:setting.formTimeout
+formTimeout = 5
+
+# cat=basic/autoInject/40; type=boolean; label=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:setting.strictMode
+strictMode = 1
+
+# cat=basic/autoInject/50; type=boolean; label=LLL:EXT:wsm_form_spamshield/Resources/Private/Language/Backend.xlf:setting.requireWhitespace
+requireWhitespace = 1
